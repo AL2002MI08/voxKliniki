@@ -31,7 +31,7 @@ export function AsrConversationPage({ token, user }: Props) {
   const chunksRef = useRef<Blob[]>([]);
   const audioContextRef = useRef<AudioContext | null>(null);
   const analyserRef = useRef<AnalyserNode | null>(null);
-  const silenceTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const silenceTimerRef = useRef<any>(null);
   const [isRecording, setIsRecording] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [sessionId, setSessionId] = useState<string | null>(null);
@@ -40,7 +40,7 @@ export function AsrConversationPage({ token, user }: Props) {
   const [listening, setListening] = useState(false);
   const [callDuration, setCallDuration] = useState(0);
   const [autoMode, setAutoMode] = useState(false);
-  const callTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const callTimerRef = useRef<any>(null);
 
   const canRecord = typeof window !== "undefined" && !!navigator.mediaDevices;
 
