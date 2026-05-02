@@ -17,7 +17,8 @@ export function useAuth() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch("/api/auth/login", {
+      const baseUrl = import.meta.env.VITE_API_URL || "http://localhost:4000";
+      const res = await fetch(`${baseUrl}/api/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -51,7 +52,8 @@ export function useAuth() {
 
   // GET /api/auth/me — server returns { user: {...} }
   const fetchMe = useCallback(async (t: string) => {
-    const res = await fetch("/api/auth/me", {
+    const baseUrl = import.meta.env.VITE_API_URL || "http://localhost:4000";
+    const res = await fetch(`${baseUrl}/api/auth/me`, {
       headers: { Authorization: `Bearer ${t}` },
     });
     if (!res.ok) throw new Error("Session expired");

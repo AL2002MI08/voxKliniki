@@ -27,9 +27,10 @@ export function useClinicSocket(clinicId: string | undefined, token: string | nu
   useEffect(() => {
     if (!clinicId || !token) return;
 
-    const socket = io({
+    const socket = io(import.meta.env.VITE_API_URL || "http://localhost:4000", {
       auth: { token },
-      // Vite proxies /socket.io → localhost:4000
+      // Vite proxies /socket.io → localhost:4000 locally.
+      // In production, we connect directly to the server URL.
       path: "/socket.io",
       transports: ["websocket", "polling"],
     });
