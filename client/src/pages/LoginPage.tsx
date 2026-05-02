@@ -103,12 +103,11 @@ export function LoginPage({ onLogin, loading, error }: Props) {
 
       {/* Right panel — login form */}
       <Box
-        w={{ base: "100%", lg: "480px" }}
-        flexShrink={0}
+        flex="1"
         display="flex"
         flexDirection="column"
         justifyContent="center"
-        px={{ base: 6, md: 12 }}
+        px={{ base: 6, md: 16, lg: 24 }}
         py={12}
         bg="#F5F0E8"
         borderLeft={{ lg: "2px solid #0A0A0A" }}

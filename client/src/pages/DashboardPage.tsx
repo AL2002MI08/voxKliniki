@@ -125,82 +125,48 @@ export function DashboardPage({ token, user, onLogout }: Props) {
             </Text>
           </HStack>
 
-          {/* Center — connection status */}
-          <HStack spacing={2}>
-            <Box
-              w="7px"
-              h="7px"
-              borderRadius="full"
-              bg={connected ? "#009944" : "#F59B00"}
-              sx={connected ? {} : {
-                animation: "pulse 1.5s ease-in-out infinite",
-                "@keyframes pulse": {
-                  "0%, 100%": { opacity: 1 },
-                  "50%": { opacity: 0.3 },
-                },
-              }}
-            />
-            <Text
-              fontSize="10px"
-              fontWeight="700"
-              textTransform="uppercase"
-              letterSpacing="0.1em"
-              color={connected ? "#009944" : "#F59B00"}
-            >
-              {connected ? "Live" : "Connecting"}
-            </Text>
-            {criticalAlerts.length > 0 && (
-              <Box
-                bg="#E50000"
-                color="white"
-                px={2}
-                py="2px"
-                fontSize="9px"
-                fontWeight="800"
-                letterSpacing="0.08em"
-                textTransform="uppercase"
-                borderRadius="2px"
-                border="1.5px solid"
-                borderColor="#0A0A0A"
-              >
-                {criticalAlerts.length} Critical
-              </Box>
-            )}
-          </HStack>
-
-          {/* Right — search + actions + user + logout */}
+          {/* Right — status + search + user + logout */}
           <HStack spacing={3}>
-            {clinic_id && (
-              <>
-                <Button
-                  as={RouterLink}
-                  to={`/asr-intake/${clinic_id}`}
-                  size="xs"
-                  bg="#FFE600"
-                  border="2px solid"
-                  borderColor="#0A0A0A"
-                  fontSize="9px"
-                  letterSpacing="0.08em"
-                  _hover={{ bg: "#FFEF5A" }}
+            <HStack spacing={2} mr={2}>
+              <Box
+                w="6px"
+                h="6px"
+                borderRadius="full"
+                bg={connected ? "#009944" : "#F59B00"}
+                sx={connected ? {} : {
+                  animation: "pulse 1.5s ease-in-out infinite",
+                  "@keyframes pulse": {
+                    "0%, 100%": { opacity: 1 },
+                    "50%": { opacity: 0.3 },
+                  },
+                }}
+              />
+              <Text
+                fontSize="9px"
+                fontWeight="700"
+                textTransform="uppercase"
+                letterSpacing="0.05em"
+                color={connected ? "#009944" : "#F59B00"}
+              >
+                {connected ? "Live" : "Connecting"}
+              </Text>
+              {criticalAlerts.length > 0 && (
+                <Box
+                  bg="#E50000"
+                  color="white"
+                  px={1.5}
+                  py="1px"
+                  fontSize="8px"
+                  fontWeight="800"
+                  textTransform="uppercase"
+                  borderRadius="2px"
+                  border="1px solid #0A0A0A"
                 >
-                  Quick Entry
-                </Button>
-                <Button
-                  as={RouterLink}
-                  to={`/asr-conversation/${clinic_id}`}
-                  size="xs"
-                  bg="#0A0A0A"
-                  color="#FFE600"
-                  border="2px solid"
-                  borderColor="#0A0A0A"
-                  fontSize="9px"
-                  letterSpacing="0.08em"
-                  _hover={{ bg: "#222" }}
-                >
-                  Voice Conversation
-                </Button>
-              </>
-            )}
+                  {criticalAlerts.length} Critical
+                </Box>
+              )}
+            </HStack>
+
             <Box
               as="button"
               onClick={() => setSearchOpen(true)}
@@ -213,7 +179,7 @@ export function DashboardPage({ token, user, onLogout }: Props) {
               h="28px"
               bg="white"
               cursor="pointer"
-              _hover={{ borderColor: "#0047FF", color: "#0047FF" }}
+              _hover={{ borderColor: "#0A0A0A", color: "#0A0A0A" }}
               fontSize="10px"
               fontWeight="700"
               letterSpacing="0.08em"
@@ -249,7 +215,7 @@ export function DashboardPage({ token, user, onLogout }: Props) {
                     {user.name.slice(0, 1).toUpperCase()}
                   </Text>
                 </Box>
-                <VStack spacing={0} align="flex-start">
+                <VStack spacing={0} align="flex-start" display={{ base: "none", md: "flex" }}>
                   <Text fontSize="11px" fontWeight="700" lineHeight="1">
                     {user.name}
                   </Text>
